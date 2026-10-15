@@ -1,11 +1,112 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿
+<section class="services" id="services">
+    <div class="grid">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-<div>
-    This is my first hosted service.
-</div>
+        <!-- Electricity: direct link -->
+        <a href="https://consumer.uppcl.org/wss/auth/login" class="card">
+            <div class="icon i-yellow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" /></svg>
+            </div>
+            <h3>Electricity Bill</h3>
+            <p>Pay your UPPCL electricity bill quickly and securely.</p>
+            <span class="cta">Pay with UPPCL <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+        </a>
+
+        <!-- Insurance: expandable -->
+        <div class="card" data-expand>
+            <div class="icon i-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z" /><path d="m9 12 2 2 4-4" /></svg>
+            </div>
+            <h3>Insurance</h3>
+            <p>Never miss a premium. Select your insurer to pay on time.</p>
+            <button type="button" class="cta toggle" aria-expanded="false" aria-controls="opt-insurance">Choose insurer <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg></button>
+            <div class="options" id="opt-insurance">
+                <div class="options-inner">
+                    <a class="opt" href="https://ebiz.licindia.in/D2CPM/?&_ga=2.51514922.246532451.1792056905-1104592888.1792056905#Login">
+                        <span class="dot" style="background:#0b4ea2">LIC</span><span class="opt-name">LIC of India</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile recharge: expandable -->
+        <div class="card" data-expand>
+            <div class="icon i-green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M11 18h2" /></svg>
+            </div>
+            <h3>Mobile Recharge</h3>
+            <p>Recharge your number instantly. Pick your operator.</p>
+            <button type="button" class="cta toggle" aria-expanded="false" aria-controls="opt-mobile">Choose operator <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg></button>
+            <div class="options" id="opt-mobile">
+                <div class="options-inner">
+                    <a class="opt" href="https://www.airtel.in/recharge/">
+                        <span class="dot" style="background:#e40000">A</span><span class="opt-name">Airtel</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                    </a>
+                    <a class="opt" href="https://www.jio.com/selfcare/recharge/">
+                        <span class="dot" style="background:#0a2885">J</span><span class="opt-name">Jio</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                    </a>
+                    <a class="opt" href="https://www.myvi.in/prepaid/online-mobile-recharge">
+                        <span class="dot" style="background:#e60000">Vi</span><span class="opt-name">Vi (Vodafone Idea)</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="block" id="how">
+    <div class="section-title">
+        <h2>How it works</h2>
+        <p>Three simple steps to pay with zero interest</p>
+    </div>
+    <div class="steps">
+        <div class="step">
+            <div class="num">1</div>
+            <h4>Choose a bill</h4>
+            <p>Select electricity, insurance or mobile recharge.</p>
+        </div>
+        <div class="step">
+            <div class="num">2</div>
+            <h4>Enter details</h4>
+            <p>Add your consumer, policy or mobile number and the amount.</p>
+        </div>
+        <div class="step">
+            <div class="num">3</div>
+            <h4>Pay with your card</h4>
+            <p>Use your eligible credit card and enjoy 0% interest.</p>
+        </div>
+    </div>
+</section>
+
+<section class="trust" id="trust">
+    <div class="trust-item">
+        <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg></div>
+        <div><b>Secure payments</b><span>Encrypted, bank-grade security</span></div>
+    </div>
+    <div class="trust-item">
+        <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg></div>
+        <div><b>Instant confirmation</b><span>Real-time payment status</span></div>
+    </div>
+    <div class="trust-item">
+        <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2" /><path d="M2 10h20" /></svg></div>
+        <div><b>0% interest</b><span>On eligible credit cards</span></div>
+    </div>
+</section>
+
+<script>
+    document.querySelectorAll('[data-expand]').forEach(function(card) {
+        var btn = card.querySelector('.toggle');
+        var panel = card.querySelector('.options');
+        btn.addEventListener('click', function() {
+            var open = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', String(!open));
+            panel.classList.toggle('show', !open);
+            card.classList.toggle('open', !open);
+        });
+    });
+</script>

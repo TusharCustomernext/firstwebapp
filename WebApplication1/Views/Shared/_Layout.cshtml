@@ -1,45 +1,566 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApplication1</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PayZero – Pay Bills with Your Credit Card at 0% Interest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+            :root {
+                --bg: #f6f8fc;
+                --surface: #ffffff;
+                --text: #0f172a;
+                --muted: #64748b;
+                --border: #e2e8f0;
+                --primary: #2563eb;
+                --primary-dark: #1d4ed8;
+                --accent: #10b981;
+                --radius: 16px;
+                --shadow: 0 1px 2px rgba(15,23,42,.06), 0 8px 24px rgba(15,23,42,.06);
+                --shadow-hover: 0 4px 8px rgba(15,23,42,.08), 0 16px 40px rgba(37,99,235,.18);
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.6;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 1120px;
+                margin: 0 auto;
+                padding: 0 24px;
+            }
+
+            /* Navbar */
+            .nav {
+                background: var(--surface);
+                border-bottom: 1px solid var(--border);
+                position: sticky;
+                top: 0;
+                z-index: 10;
+            }
+
+            .nav-inner {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 68px;
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 800;
+                font-size: 22px;
+                letter-spacing: -.02em;
+            }
+
+            .logo-mark {
+                width: 36px;
+                height: 36px;
+                border-radius: 10px;
+                display: grid;
+                place-items: center;
+                background: linear-gradient(135deg, var(--primary), #7c3aed);
+                color: #fff;
+                font-size: 18px;
+                font-weight: 800;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 28px;
+                font-size: 14px;
+                font-weight: 500;
+                color: var(--muted);
+            }
+
+                .nav-links a:hover {
+                    color: var(--primary);
+                }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-weight: 600;
+                font-size: 14px;
+                transition: .2s;
+                border: 0;
+                cursor: pointer;
+            }
+
+            .btn-primary {
+                background: var(--primary);
+                color: #fff;
+            }
+
+                .btn-primary:hover {
+                    background: var(--primary-dark);
+                }
+
+            /* Hero */
+            .hero {
+                background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #7c3aed 100%);
+                color: #fff;
+                text-align: center;
+                padding: 80px 0 120px;
+                position: relative;
+                overflow: hidden;
+            }
+
+                .hero::before, .hero::after {
+                    content: "";
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,.07);
+                }
+
+                .hero::before {
+                    width: 420px;
+                    height: 420px;
+                    top: -160px;
+                    left: -100px;
+                }
+
+                .hero::after {
+                    width: 320px;
+                    height: 320px;
+                    bottom: -140px;
+                    right: -60px;
+                }
+
+            .badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: rgba(255,255,255,.16);
+                padding: 6px 14px;
+                border-radius: 999px;
+                font-size: 13px;
+                font-weight: 600;
+                margin-bottom: 20px;
+                backdrop-filter: blur(6px);
+            }
+
+                .badge i {
+                    width: 8px;
+                    height: 8px;
+                    background: #34d399;
+                    border-radius: 50%;
+                    display: inline-block;
+                }
+
+            .hero h1 {
+                font-size: clamp(38px, 6vw, 60px);
+                font-weight: 800;
+                letter-spacing: -.03em;
+                line-height: 1.1;
+                position: relative;
+            }
+
+            .hero p {
+                margin: 18px auto 0;
+                max-width: 560px;
+                font-size: 18px;
+                color: rgba(255,255,255,.88);
+                position: relative;
+            }
+
+                .hero p strong {
+                    color: #fff;
+                }
+
+            /* Services */
+            .services {
+                margin-top: -64px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+
+            .card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 32px 28px;
+                box-shadow: var(--shadow);
+                transition: .25s;
+                display: flex;
+                flex-direction: column;
+            }
+
+                .card:hover {
+                    transform: translateY(-6px);
+                    box-shadow: var(--shadow-hover);
+                    border-color: #bfdbfe;
+                }
+
+            .icon {
+                width: 56px;
+                height: 56px;
+                border-radius: 14px;
+                display: grid;
+                place-items: center;
+                margin-bottom: 20px;
+            }
+
+                .icon svg {
+                    width: 28px;
+                    height: 28px;
+                }
+
+            .i-yellow {
+                background: #fef3c7;
+                color: #d97706;
+            }
+
+            .i-blue {
+                background: #dbeafe;
+                color: #2563eb;
+            }
+
+            .i-green {
+                background: #d1fae5;
+                color: #059669;
+            }
+
+            .card h3 {
+                font-size: 20px;
+                font-weight: 700;
+                margin-bottom: 6px;
+            }
+
+            .card p {
+                color: var(--muted);
+                font-size: 14.5px;
+                flex: 1;
+            }
+
+            .card .cta {
+                margin-top: 22px;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                font-weight: 600;
+                color: var(--primary);
+                font-size: 15px;
+            }
+
+                .card .cta svg {
+                    width: 16px;
+                    height: 16px;
+                    transition: transform .2s;
+                }
+
+            .card:hover .cta svg {
+                transform: translateX(4px);
+            }
+
+            /* Expandable cards */
+            .grid {
+                align-items: start;
+            }
+
+            .card .toggle {
+                background: none;
+                border: 0;
+                padding: 0;
+                cursor: pointer;
+                font-family: inherit;
+                text-align: left;
+            }
+
+                .card .toggle .chev {
+                    width: 18px;
+                    height: 18px;
+                    transition: transform .25s;
+                }
+
+                .card .toggle[aria-expanded="true"] .chev {
+                    transform: rotate(180deg);
+                }
+
+            .card:hover .toggle .chev {
+                transform: none;
+            }
+
+            .card:hover .toggle[aria-expanded="true"] .chev {
+                transform: rotate(180deg);
+            }
+
+            .card[data-expand]:hover {
+                transform: none;
+            }
+
+            .card.open {
+                border-color: #93c5fd;
+                box-shadow: var(--shadow-hover);
+            }
+
+            .options {
+                display: grid;
+                grid-template-rows: 0fr;
+                transition: grid-template-rows .3s ease;
+            }
+
+                .options.show {
+                    grid-template-rows: 1fr;
+                }
+
+            .options-inner {
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .options.show .options-inner {
+                padding-top: 18px;
+            }
+
+            .opt {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 14px;
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                background: #f8fafc;
+                font-weight: 600;
+                font-size: 15px;
+                transition: .2s;
+            }
+
+                .opt:hover {
+                    border-color: var(--primary);
+                    background: #eff6ff;
+                    transform: translateX(3px);
+                }
+
+                .opt .opt-name {
+                    flex: 1;
+                }
+
+                .opt svg {
+                    width: 16px;
+                    height: 16px;
+                    color: var(--muted);
+                }
+
+                .opt .dot {
+                    width: 34px;
+                    height: 34px;
+                    border-radius: 50%;
+                    color: #fff;
+                    display: grid;
+                    place-items: center;
+                    font-size: 12px;
+                    font-weight: 700;
+                    flex-shrink: 0;
+                }
+
+            /* Section */
+            section.block {
+                padding: 80px 0 0;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: 44px;
+            }
+
+                .section-title h2 {
+                    font-size: 32px;
+                    font-weight: 800;
+                    letter-spacing: -.02em;
+                }
+
+                .section-title p {
+                    color: var(--muted);
+                    margin-top: 8px;
+                }
+
+            .steps {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+
+            .step {
+                text-align: center;
+                padding: 0 12px;
+            }
+
+            .num {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: var(--primary);
+                color: #fff;
+                display: grid;
+                place-items: center;
+                font-weight: 700;
+                font-size: 18px;
+                margin: 0 auto 16px;
+                box-shadow: 0 6px 16px rgba(37,99,235,.35);
+            }
+
+            .step h4 {
+                font-size: 17px;
+                font-weight: 700;
+                margin-bottom: 6px;
+            }
+
+            .step p {
+                color: var(--muted);
+                font-size: 14.5px;
+            }
+
+            /* Trust */
+            .trust {
+                margin-top: 80px;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 28px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+                box-shadow: var(--shadow);
+            }
+
+            .trust-item {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+            }
+
+                .trust-item .ti {
+                    width: 44px;
+                    height: 44px;
+                    border-radius: 12px;
+                    background: #ecfdf5;
+                    color: var(--accent);
+                    display: grid;
+                    place-items: center;
+                    flex-shrink: 0;
+                }
+
+                .trust-item svg {
+                    width: 22px;
+                    height: 22px;
+                }
+
+                .trust-item b {
+                    display: block;
+                    font-size: 15px;
+                }
+
+                .trust-item span {
+                    font-size: 13px;
+                    color: var(--muted);
+                }
+
+            footer {
+                margin-top: 80px;
+                background: #0f172a;
+                color: #94a3b8;
+                padding: 32px 0;
+                font-size: 14px;
+            }
+
+            .foot {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+                .foot .logo {
+                    color: #fff;
+                    font-size: 18px;
+                }
+
+            .disclaimer {
+                margin-top: 16px;
+                font-size: 12.5px;
+                color: #64748b;
+            }
+
+            @@media (max-width: 860px) {
+                .grid, .steps, .trust {
+                    grid-template-columns: 1fr;
+                }
+
+                .nav-links {
+                    display: none;
+                }
+
+                .hero {
+                    padding: 56px 0 100px;
+                }
+            }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApplication1</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <header class="nav">
+        <div class="container nav-inner">
+            <a href="#" class="logo"><span class="logo-mark">P</span> PayZero</a>
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#how">How it works</a>
+                <a href="#trust">Security</a>
+            </nav>
+            <a href="#services" class="btn btn-primary">Pay a Bill</a>
+        </div>
     </header>
+    <section class="hero">
+        <div class="container">
+            <span class="badge"><i></i> 0% interest on eligible credit cards</span>
+            <h1>PayZero</h1>
+            <p>Pay your bills with your <strong>eligible credit card at 0% interest</strong> — fast, simple and secure.</p>
+        </div>
+    </section>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer>
         <div class="container">
-            &copy; 2026 - WebApplication1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="foot">
+                <a href="#" class="logo"><span class="logo-mark">P</span> PayZero</a>
+                <span>© 2026 PayZero. All rights reserved.</span>
+            </div>
+            <p class="disclaimer">0% interest is applicable only on eligible credit cards, subject to issuer terms and conditions.</p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
